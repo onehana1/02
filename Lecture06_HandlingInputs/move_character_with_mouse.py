@@ -28,7 +28,7 @@ character = load_image('animation_sheet.png')
 running = True
 x, y = KPU_WIDTH // 2, KPU_HEIGHT // 2
 frame = 0
-# hide_cursor()
+hide_cursor()
 
 while running:
     clear_canvas()
