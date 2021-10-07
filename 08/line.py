@@ -66,10 +66,7 @@ def draw_line_basic(p1, p2):
 
 
 def draw_line():
-    #draw_big_point(p1)
-    #draw_big_point(p2)
-    #x1, y1 = p1[0], p1[1]
-    #x2, y2 = p2[0], p2[1]
+
 
     for i in range(0,10000+1,20):
         t=i/100
@@ -83,7 +80,6 @@ def draw_line():
 
 prepare_turtle_canvas()
 
-# draw_line_basic((-100,-100),(300,150))
 draw_line()
 
 turtle.done()
