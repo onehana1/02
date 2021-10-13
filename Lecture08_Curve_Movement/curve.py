@@ -88,6 +88,47 @@ def draw_curve_4_points(p1, p2, p3, p4):
         draw_point((x, y))
     draw_point(p4)
 
+def draw_curve_5_points(p1, p2, p3, p4,p5):
+    draw_big_point(p1)
+    draw_big_point(p2)
+    draw_big_point(p3)
+    draw_big_point(p4)
+    draw_big_point(p5)
+
+    # draw p1-p2
+    for i in range(0, 50, 2):
+        t = i / 100
+        x = (2*t**2-3*t+1)*p1[0]+(-4*t**2+4*t)*p2[0]+(2*t**2-t)*p3[0]
+        y = (2*t**2-3*t+1)*p1[1]+(-4*t**2+4*t)*p2[1]+(2*t**2-t)*p3[1]
+        draw_point((x, y))
+    draw_point(p2)
+
+    # draw p2-p3 1234의 중간 23
+    for i in range(0, 100, 2):
+        t = i / 100
+        x = ((-t**3 + 2*t**2 - t)*p1[0] + (3*t**3 - 5*t**2 + 2)*p2[0] + (-3*t**3 + 4*t**2 + t)*p3[0] + (t**3 - t**2)*p4[0])/2
+        y = ((-t**3 + 2*t**2 - t)*p1[1] + (3*t**3 - 5*t**2 + 2)*p2[1] + (-3*t**3 + 4*t**2 + t)*p3[1] + (t**3 - t**2)*p4[1])/2
+        draw_point((x, y))
+    draw_point(p3)
+
+    # draw p3-p4 2345 의 중간 34
+    for i in range(0, 100, 2):
+        t = i / 100
+        x = ((-t**3 + 2*t**2 - t)*p2[0] + (3*t**3 - 5*t**2 + 2)*p3[0] + (-3*t**3 + 4*t**2 + t)*p4[0] + (t**3 - t**2)*p5[0])/2
+        y = ((-t**3 + 2*t**2 - t)*p2[1] + (3*t**3 - 5*t**2 + 2)*p3[1] + (-3*t**3 + 4*t**2 + t)*p4[1] + (t**3 - t**2)*p5[1])/2
+        draw_point((x, y))
+        
+
+    # draw p3-p4 345의 뒤의 50% 계산
+    for i in range(50, 100, 2):
+        t = i / 100
+        x = (2*t**2-3*t+1)*p3[0]+(-4*t**2+4*t)*p4[0]+(2*t**2-t)*p5[0]
+        y = (2*t**2-3*t+1)*p3[1]+(-4*t**2+4*t)*p4[1]+(2*t**2-t)*p5[1]
+        draw_point((x, y))
+
+    
+
+       
 
 
 
@@ -157,18 +198,25 @@ def blend_lines(p1,p2,p3,p4):
 
 
 
-p1 = x1, y1 = random.randint(100, 300), random.randint(100,300)
-p2 = x2, y2 = random.randint(-300,-200), random.randint(100,300)
-p3 = x3, y3 = random.randint(-300, -200), random.randint(-300,-100)
-p4 = x3, y3 = random.randint(200, 300), random.randint(-300,-100)
+# p1 = x1, y1 = random.randint(100, 300), random.randint(100,300)
+# p2 = x2, y2 = random.randint(-300,-200), random.randint(100,300)
+# p3 = x3, y3 = random.randint(-300, -200), random.randint(-300,-100)
+# p4 = x3, y3 = random.randint(200, 300), random.randint(-300,-100)
 
 # draw_curve_3_points(p1,p2,p3)
 
 #p2 = x2, y2 = random.randint(100,200), random.randint(-200, -100)
 
+p1 = x1,y1 = -350, -100
+p2 = x2,y2 = -50, 200
+p3 = x3,y3 = 150, -100
+p4 = x4,y4 = 350, 300
+p5 = x5,y5 = 450, 50
 
 
-draw_curve_4_points(p2,p3,p4,p1)
+# draw_curve_4_points(p1,p2,p3,p4)
+draw_curve_5_points(p1,p2,p3,p4,p5)
+
 
 
 # draw_line(p1, p2)
