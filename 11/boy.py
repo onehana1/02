@@ -39,6 +39,7 @@ class IdleState:
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.timer -= 1
+        boy.state = 'idle'
 
         if boy.timer == 0:
             boy.add_event(SLEEP_TIMER)
@@ -66,6 +67,8 @@ class RunState:
         pass
 
     def do(boy):
+        boy.state = 'run'
+
         boy.frame = (boy.frame + 1) % 8
         boy.timer -= 1
         boy.x += boy.velocity
@@ -88,6 +91,8 @@ class SleepState:
         pass
 
     def do(boy):
+        boy.state = 'sleep'
+
         boy.frame = (boy.frame + 1) % 8
 
     def draw(boy):
@@ -124,6 +129,8 @@ class DashState:
         pass
 
     def do(boy):
+        boy.state = 'dash'
+
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.velocity * 2
         boy.x = clamp(25, boy.x, 800 - 25)
@@ -142,7 +149,8 @@ class DashState:
 next_state_table = {
     IdleState: {RIGHT_UP: RunState, LEFT_UP: RunState, 
                 RIGHT_DOWN: RunState, LEFT_DOWN: RunState,
-                SLEEP_TIMER: SleepState},
+                SLEEP_TIMER: SleepState,
+                SHIFT_DOWN:IdleState,SHIFT_UP:IdleState},
 
     RunState: {RIGHT_UP: IdleState, LEFT_UP: IdleState, 
                 LEFT_DOWN: IdleState, RIGHT_DOWN: IdleState,
@@ -174,6 +182,7 @@ class Boy:
         self.frame = 0
         self.timer = 0
         self.dash = 0
+        self.state = 0
 
         self.event_que = []
 
@@ -209,7 +218,7 @@ class Boy:
     def draw(self):
         # fill here
         self.cur_state.draw(self)
-        debug_print('Velocity :' + str(self.velocity) + ' Dir:' + str(self.dir))
+        debug_print('Velocity :' + str(self.velocity) + ' Dir:' + str(self.dir) + 'State :' + str(self.state))
         pass
 
 
